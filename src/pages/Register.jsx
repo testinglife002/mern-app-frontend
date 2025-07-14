@@ -5,16 +5,27 @@ import api from "../api";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
+  
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await api.post("/auth/register", form);
-      alert("User registered");
-    } catch (err) {
-      alert(err.response.data.error);
+        const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
+
+        try {
+            const res = await axios.post(`${baseURL}/auth/register`, {
+            name,
+            email,
+            password
+            }, {
+            withCredentials: true
+            });
+
+            console.log("Registered:", res.data);
+        } catch (err) {
+            console.error("Register error:", err.response?.data || err.message);
+        }
     }
-  };
 
   return (
 
