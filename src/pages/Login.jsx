@@ -5,13 +5,20 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-
+  const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/auth/login", form);
+      const res = await axios.post(`${baseURL}/auth/login`, {
+        email: form.email,
+        password: form.password
+        }, {
+        withCredentials: true
+      });
+       console.log("LoggedIn:", res.data);
       navigate("/");
     } catch (err) {
+        console.error("Login error:", err.response?.data || err.message);
       alert("Invalid credentials");
     }
   };

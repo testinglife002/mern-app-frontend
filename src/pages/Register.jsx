@@ -10,9 +10,9 @@ export default function Register() {
   
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const { name, email, password } = form;
         const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
-
+        
         try {
             const res = await axios.post(`${baseURL}/auth/register`, {
             name,
