@@ -6,7 +6,7 @@ import api from "../api";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
+  // const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
   
     const handleSubmit = async (e) => {
         e.preventDefault();
