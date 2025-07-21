@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
+  // const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
     try {
       const res = await axios.post(`${baseURL}/auth/login`, {
         email: form.email,
