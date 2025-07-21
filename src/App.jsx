@@ -9,7 +9,6 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import AuthPage from './pages/AuthPage';
 // import DashboardPage from './pages/DashboardPage'; // Create this page
-import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -27,8 +26,7 @@ function App() {
     {/*
     <Router>
         <AuthProvider>
-            <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-            <Routes>
+           <Routes>
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/" element={<PrivateRoute />}>
                    

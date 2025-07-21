@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import API from '../api/api';
-import { toast } from 'react-toastify'; // If using react-toastify
+import API from '../api/api'; 
+// import { toast } from 'react-toastify'; // If using react-toastify
 
 const AuthContext = createContext();
 
@@ -21,11 +21,11 @@ export const AuthProvider = ({ children }) => {
             const { data } = await API.post('/auth/login', { email, password });
             localStorage.setItem('userInfo', JSON.stringify(data));
             setUser(data);
-            toast.success('Logged in successfully!');
+            // toast.success('Logged in successfully!');
             return true;
         } catch (error) {
             console.log(error);
-            toast.error(error.response?.data?.message || 'Login failed');
+            // toast.error(error.response?.data?.message || 'Login failed');
             return false;
         }
     };
@@ -35,11 +35,11 @@ export const AuthProvider = ({ children }) => {
             const { data } = await API.post('/auth/register', { name, email, password });
             localStorage.setItem('userInfo', JSON.stringify(data));
             setUser(data);
-            toast.success('Registration successful! You are now logged in.');
+            // toast.success('Registration successful! You are now logged in.');
             return true;
         } catch (error) {
             console.log(error);
-            toast.error(error.response?.data?.message || 'Registration failed');
+            // toast.error(error.response?.data?.message || 'Registration failed');
             return false;
         }
     };
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('userInfo');
         setUser(null);
-        toast.info('Logged out.');
+        // toast.info('Logged out.');
     };
 
     return (
