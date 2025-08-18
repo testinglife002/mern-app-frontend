@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
                 withCredentials: true
             });
             console.log("LoggedIn:", res.data);
-            // localStorage.setItem('token', data.token);
+             localStorage.setItem('token', res.data.token);
             setUser(res.data.user);
             toast.success('Login successful!');
             navigate('/dashboard');
