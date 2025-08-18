@@ -49,6 +49,7 @@ const Login = ({ setUser }) => {
             console.log("LoggedIn:", res.data);
             // localStorage.setItem('token', res.data.token);
             setUser(res.data.user);
+            localStorage.setItem("token", res.data.token);
             toast.success('Login successful!');
             navigate('/dashboard');
             // navigate("/");
