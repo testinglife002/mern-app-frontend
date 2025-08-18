@@ -101,7 +101,7 @@ function App() {
           <Route path="/theme-app-ui" element={<ThemeApp />} />
           <Route path="/mui-app-ui" element={<MUIApp />} />
           <Route path="/trello-app" element={<TrelloApp />} />
-          <Route path="/mui-trello-app" element={<MUITrelloApp />} />
+          <Route path="/  " element={<MUITrelloApp />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
 

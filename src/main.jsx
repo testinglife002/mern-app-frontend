@@ -9,6 +9,11 @@ import 'swiper/css/scrollbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 
+import axios from "axios";
+
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE;
+axios.defaults.withCredentials = true;  // ✅ send cookies with requests
+
 
 /*
 createRoot(document.getElementById('root')).render(

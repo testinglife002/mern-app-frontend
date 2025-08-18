@@ -38,7 +38,7 @@ const Login = ({ setUser }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const baseURL = import.meta.env.VITE_API_BASE_LOCAL.replace(/\/$/, '');
+        const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
         try {
             const res = await axios.post(`${baseURL}/auth/login`, {
                     email,
@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
                 withCredentials: true
             });
             console.log("LoggedIn:", res.data);
-             localStorage.setItem('token', res.data.token);
+            // localStorage.setItem('token', res.data.token);
             setUser(res.data.user);
             toast.success('Login successful!');
             navigate('/dashboard');
