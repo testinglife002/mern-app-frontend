@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import api from "../api";
@@ -7,12 +7,13 @@ import api from "../api";
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   // const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');  
+  const navigate = useNavigate();
   
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, email, password } = form;
+       // const baseURL = import.meta.env.VITE_API_BASE_LOCAL.replace(/\/$/, '');
         const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
-        
         try {
             const res = await axios.post(`${baseURL}/auth/register`, {
             name,
@@ -21,8 +22,8 @@ export default function Register() {
             }, {
             withCredentials: true
             });
-
             console.log("Registered:", res.data);
+            navigate("/login");
         } catch (err) {
             console.error("Register error:", err.response?.data || err.message);
         }

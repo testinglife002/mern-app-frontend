@@ -1,0 +1,10 @@
+
+
+.activity-feed {
+  min-width: 250px;
+  background-color: #fff;
+  padding: 1rem;
+  border-left: 2px solid #90caf9;
+  overflow-y: auto;
+  max-height: 90vh;
+}

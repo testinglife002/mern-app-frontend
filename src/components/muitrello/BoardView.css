@@ -1,0 +1,7 @@
+
+.board-view {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}

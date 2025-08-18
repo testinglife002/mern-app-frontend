@@ -1,68 +1,59 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+/* src/components/styles.css */
 
 body {
   margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f6f8;
+}
+
+.app {
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.board {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.list {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  padding: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.2s;
 }
 
-button {
+.list:hover {
+  transform: translateY(-2px);
+}
+
+.list-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+}
+
+.card {
+  background: #ecf0f1;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.card:hover {
+  background: #dfe6e9;
 }

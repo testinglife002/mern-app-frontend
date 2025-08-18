@@ -1,0 +1,23 @@
+.app.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+.app.dark-mode .card {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.sidebar {
+  min-width: 220px;
+  height: 100vh;
+}
+
+.sidebar .nav-link {
+  color: #ccc;
+}
+
+.sidebar .nav-link.active {
+  background-color: #0d6efd;
+  color: white;
+}

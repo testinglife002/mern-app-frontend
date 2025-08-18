@@ -1,0 +1,19 @@
+
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+
+
+
+
+
+

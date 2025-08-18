@@ -1,3 +1,107 @@
+// context/AuthContext.jsx
+// import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
+
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import toast from 'react-hot-toast';
+// import * as api from '../api';
+import * as api from '../api/index.js';
+
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    
+    const loadUser = useCallback(async () => {
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            // Check if token is expired
+            if (decodedToken.exp * 1000 < Date.now()) {
+                localStorage.removeItem('token');
+                setToken(null);
+                setUser(null);
+            } else {
+                try {
+                    const res = await api.getLoggedInUser();
+                    setUser(res.data);
+                } catch (error) {
+                    // Handle case where token is valid but user not found in DB
+                    localStorage.removeItem('token');
+                    setToken(null);
+                    setUser(null);
+                    console.error('Failed to fetch user', error);
+                }
+            }
+        }
+        setLoading(false);
+    }, [token]);
+    
+   
+
+    useEffect(() => {
+        loadUser();
+    }, [loadUser]);
+    
+
+    const login = async (formData) => {
+        try {
+            const { data } = await api.login(formData);  // ✅ Correct call
+            localStorage.setItem('token', data.token);
+            setToken(data.token);
+            const res = await api.getLoggedInUser();
+            setUser(res.data);
+            toast.success('Login Successful!');
+            navigate('/dashboard');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.response?.data?.msg || 'Login Failed');
+        }
+    };
+
+
+    const register = async (formData) => {
+        try {
+            const { data } = await api.register(formData);
+            // localStorage.setItem('token', data.token);
+            // setToken(data.token);
+            // const res = await api.getLoggedInUser();
+            // setUser(res.data);
+            toast.success('Registration Successful!');
+            // navigate('/dashboard');
+            navigate('/login');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.response?.data?.msg || 'Registration Failed');
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+        setToken(null);
+        toast.success('Logged out successfully.');
+        navigate('/login');
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, token, login, register, logout, loading, isAuthenticated: !!user }}>
+            {!loading && children}
+        </AuthContext.Provider>
+    );
+};
+
+export default AuthContext;
+
+
+
+
+/*
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import API from '../api/api'; 
 // import { toast } from 'react-toastify'; // If using react-toastify
@@ -58,3 +162,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+*/
+
