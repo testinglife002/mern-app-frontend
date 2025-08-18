@@ -62,7 +62,8 @@ const MainDashboard = ({ user }) => {
         }
 
         setIsCreating(true);
-        const baseURL = import.meta.env.VITE_API_BASE_LOCAL.replace(/\/$/, '');
+        // const baseURL = import.meta.env.VITE_API_BASE_LOCAL.replace(/\/$/, '');
+        const baseURL = import.meta.env.VITE_API_BASE.replace(/\/$/, '');
         try {
             // const { data } = await api.createBoard({ name: newBoardName });
             const { data } = await axios.post(`${baseURL}/boards`, { 
